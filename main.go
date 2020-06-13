@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-chi/chi"
 
-	"github.com/Ekram-B2/rankmanager/rankmanager"
+	rankmanager "github.com/Ekram-B2/rankmanager/rank"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	var bindingPort string
 	if os.Getenv("SYSTEM_BUILD") == "1" {
 		// Hardcoded the port number in development mode
-		bindingPort = ":8080"
+		bindingPort = ":8081"
 	} else {
 		bindingPort = ":" + os.Getenv("PORT")
 	}

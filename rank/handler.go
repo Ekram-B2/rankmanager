@@ -81,6 +81,7 @@ func HandleRequestToDetermineRank(rw http.ResponseWriter, req *http.Request) {
 
 func convertStringToFloat32(loc string) float32 {
 	value, err := strconv.ParseFloat(loc, 32)
+
 	if err != nil {
 		return 0.0
 	}

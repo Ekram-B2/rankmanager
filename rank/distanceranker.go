@@ -1,7 +1,7 @@
 package rankmanager
 
-// charDistanceCalculator defines the operation to determine distance using the chars of what is compared
-type charDistanceCalculator func(string, string, normalizer) float32
+// distanceRanker defines the operation to determine distance using the chars of what is compared
+type distanceRanker func(string, string, normalizer) float32
 
 // normalizer defines the operation to normalize an integer to between [0, 1]
 type normalizer func(int, int, int) float32
@@ -32,17 +32,17 @@ func getNormalizer(normalizerType string) normalizer {
 
 // getDistanceRanker is a factory that generates the run time implementation of the algorithm that calculates distance using the
 // characters of a string
-func getDistanceRanker(rankerType string) charDistanceCalculator {
+func getDistanceRanker(rankerType string) distanceRanker {
 	switch rankerType {
 	case "default":
-		return defaultDistanceCalculator
+		return defaultDistanceRanker
 	default:
-		return defaultDistanceCalculator
+		return defaultDistanceRanker
 	}
 }
 
-// defaultDistanceCalculator is applied to find a distance using just the characters
-func defaultDistanceCalculator(searchTerm, realTerm string, normalizer normalizer) float32 {
+// defaultDistanceRanker is applied to find a distance using just the characters
+func defaultDistanceRanker(searchTerm, realTerm string, normalizer normalizer) float32 {
 	// 1 Apply levenstein distance algorithm
 	if len(searchTerm) == 0 {
 		return float32(len(realTerm))

@@ -8,18 +8,23 @@ type latLngDistanceCalculator func(float32, float32, float32, float32) float32
 func getLatLngDistanceCalc(opType string) latLngDistanceCalculator {
 	switch opType {
 	case "default":
-		return latlngDistCalculator
+		return latlngDistCalculatorDefault
 	default:
-		return latlngDistCalculator
+		return latlngDistCalculatorDefault
 	}
 }
 
 // latlngDistCalculator implements the algorithm which defines the logic to handle the contribution to the score by the lat and lng
-func latlngDistCalculator(searchTermLat, searchTermLng, realTermLat, realTermLng float32) float32 {
+func latlngDistCalculatorDefault(searchTermLat, searchTermLng, realTermLat, realTermLng float32) float32 {
+
 	var (
 		largerLat float32
 		largerLng float32
 	)
+	if searchTermLat == 0 || realTermLat == 0 || searchTermLng == 0 || realTermLng == 0 {
+		return 0
+	}
+
 	if searchTermLat > realTermLat {
 		largerLat = searchTermLat
 	} else {
