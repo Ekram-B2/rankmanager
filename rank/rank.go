@@ -1,5 +1,5 @@
 package rankmanager
-
+randomData "github.com/Pallinder/go-randomdata"
 // Rank is the definition for what is retreived from the microservice
 type Rank struct {
 	Name string  `json:"name"`
@@ -9,7 +9,7 @@ type Rank struct {
 // Apply the calculateRank function to compute a rank between the searchTerm and the realTerm
 func getRank(searchTerm, realTerm string, distRanker distanceRanker, normalizer normalizer) float32 {
 	// 1. Calcuate distance with just the characters
-	score := float32(distRanker(searchTerm, realTerm, normalizer))
+	score := 1 - float32(distRanker(searchTerm, realTerm, normalizer))
 	// 2. Return score
 	return score
 }

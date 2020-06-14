@@ -24,7 +24,7 @@ func main() {
 	} else {
 		bindingPort = ":" + os.Getenv("PORT")
 	}
-	// 4. start up an http server object at port 8000
+	// 4. start up an http server object at port 8081
 
 	http.ListenAndServe(bindingPort, r)
 }
