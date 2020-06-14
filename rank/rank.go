@@ -1,5 +1,5 @@
 package rankmanager
-randomData "github.com/Pallinder/go-randomdata"
+
 // Rank is the definition for what is retreived from the microservice
 type Rank struct {
 	Name string  `json:"name"`

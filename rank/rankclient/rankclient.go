@@ -62,13 +62,13 @@ func createURL(searchTerm, realTerm, realTermLat, searchTermLat, realTermLng, se
 	// 1. Apply modifications to terms in cases where the cities have spaces
 	modifiedSearchTerm := strings.ReplaceAll(searchTerm, " ", "%20")
 	modifiedRealTerm := strings.ReplaceAll(realTerm, " ", "%20")
-	// 2. Return the appropriae URL based on whether the environment is development or production
+	// 2. Return the appropriate URL based on whether the environment is development or production
 	if config.IsDevelopmentEnvironment(os.Getenv("SYSTEM_BUILD")) {
-		port := os.Getenv("PORT")
+		domainWithProtocol := os.Getenv("DEVELOPMENT_SERVICE_PATH")
 		if realTermLat == "" || realTermLng == "" || searchTermLat == "" || searchTermLng == "" {
-			return fmt.Sprintf("http://127.0.0.1:%s/determineRank?searchTerm=%s&realTerm=%s", port, modifiedSearchTerm, modifiedRealTerm)
+			return fmt.Sprintf("%s/determineRank?searchTerm=%s&realTerm=%s", domainWithProtocol, modifiedSearchTerm, modifiedRealTerm)
 		}
-		return fmt.Sprintf("http://127.0.0.1:%s/determineRank?searchTerm=%s&realTerm=%s&searchTermLat=%s&searchTermLng=%s&realTermLat=%s&realTermLng=%s", port, modifiedSearchTerm,
+		return fmt.Sprintf("%s/determineRank?searchTerm=%s&realTerm=%s&searchTermLat=%s&searchTermLng=%s&realTermLat=%s&realTermLng=%s", domainWithProtocol, modifiedSearchTerm,
 			modifiedRealTerm,
 			realTermLat,
 			searchTermLat,
@@ -77,10 +77,12 @@ func createURL(searchTerm, realTerm, realTermLat, searchTermLat, realTermLng, se
 
 	}
 
+	domainWithProtocol := os.Getenv("DEVELOPMENT_SERVICE_PATH")
 	if realTermLat == "" || realTermLng == "" || searchTermLat == "" || searchTermLng == "" {
-		return fmt.Sprintf("https://salty-reaches-56686.herokuapp.com/determineRank?searchTerm=%s&realTerm=%s", modifiedSearchTerm, modifiedRealTerm)
+		return fmt.Sprintf("%s/determineRank?searchTerm=%s&realTerm=%s", modifiedSearchTerm, modifiedRealTerm)
 	}
-	return fmt.Sprintf("https://salty-reaches-56686.herokuapp.com/determineRank?searchTerm=%s&realTerm=%s&searchTermLat=%s&searchTermLng=%s&realTermLat=%s&realTermLng=%s", modifiedSearchTerm,
+	return fmt.Sprintf("%s/determineRank?searchTerm=%s&realTerm=%s&searchTermLat=%s&searchTermLng=%s&realTermLat=%s&realTermLng=%s", domainWithProtocol,
+		modifiedSearchTerm,
 		modifiedRealTerm,
 		realTermLat,
 		searchTermLat,
