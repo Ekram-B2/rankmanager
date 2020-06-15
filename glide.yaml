@@ -1,0 +1,8 @@
+package: github.com/Ekram-B2/rankmanager
+import:
+- package: github.com/Ekram-B2/suggestionsmanager
+  subpackages:
+  - config
+- package: github.com/alecthomas/log4go
+- package: github.com/go-chi/chi
+  version: v4.1.2
