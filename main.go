@@ -14,7 +14,7 @@ func main() {
 	r := chi.NewRouter()
 
 	// 2. Define the endpoints required of for the task
-	r.Get("/determineRank", rankmanager.HandleRequestToDetermineRank)
+	r.Get("/rank", rankmanager.HandleRequestToDetermineRank)
 
 	// 3. Determine the binding port
 	var bindingPort string
@@ -23,6 +23,7 @@ func main() {
 		bindingPort = ":8081"
 	} else {
 		bindingPort = ":" + os.Getenv("PORT")
+
 	}
 	// 4. start up an http server object at the port
 	http.ListenAndServe(bindingPort, r)

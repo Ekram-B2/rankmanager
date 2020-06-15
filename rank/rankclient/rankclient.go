@@ -74,9 +74,9 @@ func createPath(searchTerm, realTerm, realTermLat, searchTermLat, realTermLng, s
 	// 2. Return the appropriate URL based on whether the environment is development or production
 
 	if searchTermLat == "" || searchTermLng == "" {
-		return fmt.Sprintf("/determineRank?searchTerm=%s&realTerm=%s", modifiedSearchTerm, modifiedRealTerm)
+		return fmt.Sprintf("/rank?searchTerm=%s&realTerm=%s", modifiedSearchTerm, modifiedRealTerm)
 	}
-	return fmt.Sprintf("/determineRank?searchTerm=%s&realTerm=%s&searchTermLat=%s&searchTermLng=%s&realTermLat=%s&realTermLng=%s", modifiedSearchTerm,
+	return fmt.Sprintf("/rank?searchTerm=%s&realTerm=%s&searchTermLat=%s&searchTermLng=%s&realTermLat=%s&realTermLng=%s", modifiedSearchTerm,
 		modifiedRealTerm,
 		searchTermLat,
 		searchTermLng,

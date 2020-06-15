@@ -33,7 +33,7 @@ func Test_createURL(t *testing.T) {
 				searchTermLng: "234",
 				realTermLat:   "123",
 				realTermLng:   "234"},
-			want: "/determineRank?searchTerm=tor&realTerm=toronto&searchTermLat=123&searchTermLng=234&realTermLat=123&realTermLng=234",
+			want: "/rank?searchTerm=tor&realTerm=toronto&searchTermLat=123&searchTermLng=234&realTermLat=123&realTermLng=234",
 		},
 		{
 			name: "HasSpaces",
@@ -43,7 +43,7 @@ func Test_createURL(t *testing.T) {
 				searchTermLng: "234",
 				realTermLat:   "123",
 				realTermLng:   "234"},
-			want: "/determineRank?searchTerm=tor&realTerm=new%20york&searchTermLat=123&searchTermLng=234&realTermLat=123&realTermLng=234",
+			want: "/rank?searchTerm=tor&realTerm=new%20york&searchTermLat=123&searchTermLng=234&realTermLat=123&realTermLng=234",
 		},
 	}
 	for _, tt := range tests {
@@ -52,10 +52,10 @@ func Test_createURL(t *testing.T) {
 			// 2. Compute output and check if result matches the expected (Act, Assert)
 			if got := createPath(tt.args.searchTerm,
 				tt.args.realTerm,
-				tt.args.searchTermLat,
-				tt.args.searchTermLng,
 				tt.args.realTermLat,
-				tt.args.realTermLng); got != tt.want {
+				tt.args.searchTermLat,
+				tt.args.realTermLng,
+				tt.args.searchTermLng); got != tt.want {
 				t.Errorf("createURL() = %v, want %v", got, tt.want)
 			}
 		})
